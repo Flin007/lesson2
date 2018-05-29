@@ -24,6 +24,9 @@ function playListChangeBack() {
     }
     player.src = 'mp3/'+audioPlayList[counter];
     playerTitle.title = audioPlayList[counter];
+    if(mediaPlayer.classList.contains('play')){
+        player.play();
+    }
 }
 
 function playListChangeNext() {
@@ -34,6 +37,9 @@ function playListChangeNext() {
     }
     player.src = 'mp3/'+audioPlayList[counter];
     playerTitle.title = audioPlayList[counter];
+    if(mediaPlayer.classList.contains('play')){
+        player.play();
+    }
 }
 
 function doButtonAction() {
@@ -49,6 +55,9 @@ function doButtonAction() {
     }else if(this.className === 'stop'){
         player.pause();
         player.currentTime = 0;
+        if(mediaPlayer.classList.contains('play')){
+            mediaPlayer.classList.toggle('play');
+        }
     }else if(this.className === 'back'){
         playListChangeBack();
     }else if(this.className === 'next'){
