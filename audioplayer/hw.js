@@ -1,5 +1,9 @@
+
+
+
+
 const mediaPlayer = document.getElementsByClassName('mediaplayer')[0];
-const player = mediaPlayer.getElementsByTagName('audio');
+const player = mediaPlayer.getElementsByTagName('audio')[0];
 const buttonsList = document.getElementsByClassName('buttons')[0];
 const button = buttonsList.getElementsByTagName('button');
 let counter = 0;
@@ -12,18 +16,44 @@ player.src = 'mp3/'+audioPlayList[counter];
 const playerTitle = document.getElementsByClassName('title')[0];
 playerTitle.title = audioPlayList[counter];
 
+function playListChangeBack() {
+    if(counter === 0){
+        counter = audioPlayList.length - 1;
+    }else{
+        counter--;
+    }
+    player.src = 'mp3/'+audioPlayList[counter];
+    playerTitle.title = audioPlayList[counter];
+}
+
+function playListChangeNext() {
+    if(counter === audioPlayList.length -1){
+        counter = 0;
+    }else{
+        counter++;
+    }
+    player.src = 'mp3/'+audioPlayList[counter];
+    playerTitle.title = audioPlayList[counter];
+}
+
 function doButtonAction() {
     console.log(this.className);
     if(this.className === 'playstate'){
-        const buttonAction = this.getElementsByTagName('i');
-        player[0].play();
+        if(mediaPlayer.classList.contains('play')){
+            mediaPlayer.classList.toggle('play');
+            player.pause();
+        }else{
+            mediaPlayer.classList.toggle('play');
+            player.play();
+        }
     }else if(this.className === 'stop'){
-        player[0].pause();
-        player[0].currentTime = 0;
+        player.pause();
+        player.currentTime = 0;
     }else if(this.className === 'back'){
-        if
-            }
-
+        playListChangeBack();
+    }else if(this.className === 'next'){
+        playListChangeNext();
+    }
 }
 
 for (let i = 0; i < button.length; i++){
